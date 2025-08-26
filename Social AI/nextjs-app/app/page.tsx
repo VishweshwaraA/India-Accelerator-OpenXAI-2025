@@ -105,44 +105,52 @@ export default function SocialNetwork() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-600">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDEwMCwxMDAsMTIwLDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
+      
+      <div className="relative z-10 container mx-auto px-4 py-12">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">💬 Social Network AI</h1>
-          <p className="text-white/80 text-lg">AI-Powered Social Media Tools</p>
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-pink-300 mb-3">SOCIALFLOW</h1>
+          <p className="text-blue-100 text-lg">Next-Gen AI Tools for Social Media</p>
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 flex space-x-2">
+        <div className="flex justify-center mb-12">
+          <div className="bg-gray-800/50 backdrop-blur-lg rounded-xl p-1.5 flex space-x-1 border border-gray-700/50 shadow-2xl">
             {[
               { id: 'caption', label: '📸 Caption', desc: 'Generate Captions', gradient: 'instagram-gradient' },
               { id: 'mood', label: '😊 Mood', desc: 'Check Sentiment', gradient: 'twitter-gradient' },
               { id: 'hashtags', label: '#️⃣ Hashtags', desc: 'Suggest Tags', gradient: 'social-gradient' }
-            ].map(tab => (
+            ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-lg transition-all ${
+                className={`relative px-8 py-4 rounded-lg transition-all duration-300 overflow-hidden group ${
                   activeTab === tab.id
                     ? `${tab.gradient} text-white shadow-lg`
-                    : 'text-white hover:bg-white/10'
+                    : 'text-gray-300 hover:text-white bg-gray-800/50 hover:bg-gray-700/50'
                 }`}
               >
-                <div className="text-sm font-medium">{tab.label}</div>
-                <div className="text-xs opacity-75">{tab.desc}</div>
+                <div className="relative z-10 flex flex-col items-center">
+                  <span className="text-lg font-medium">{tab.label}</span>
+                  <span className="text-xs mt-1 opacity-80">{tab.desc}</span>
+                </div>
+                {activeTab === tab.id && (
+                  <span className="absolute -bottom-1 left-1/2 w-1/2 h-0.5 bg-white rounded-full transform -translate-x-1/2"></span>
+                )}
               </button>
             ))}
           </div>
         </div>
 
         {/* Content */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto transform transition-all duration-300 hover:scale-[1.01]">
           {/* Caption Generator Tab */}
           {activeTab === 'caption' && (
             <div className="tab-content">
-              <div className="social-card rounded-xl p-6">
+              <div className="social-card rounded-2xl p-8 backdrop-blur-lg border border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:border-blue-400/30">
                 <h2 className="text-2xl font-bold text-white mb-4">📸 Caption Generator</h2>
                 <p className="text-white/80 mb-6">Describe your image and get an Instagram-ready caption!</p>
                 
@@ -184,7 +192,7 @@ export default function SocialNetwork() {
           {/* Mood Checker Tab */}
           {activeTab === 'mood' && (
             <div className="tab-content">
-              <div className="social-card rounded-xl p-6">
+              <div className="social-card rounded-2xl p-8 backdrop-blur-lg border border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:border-blue-400/30">
                 <h2 className="text-2xl font-bold text-white mb-4">😊 Mood Checker</h2>
                 <p className="text-white/80 mb-6">Paste any text to analyze its emotional sentiment!</p>
                 
@@ -221,7 +229,7 @@ export default function SocialNetwork() {
           {/* Hashtag Suggestor Tab */}
           {activeTab === 'hashtags' && (
             <div className="tab-content">
-              <div className="social-card rounded-xl p-6">
+              <div className="social-card rounded-2xl p-8 backdrop-blur-lg border border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:border-blue-400/30">
                 <h2 className="text-2xl font-bold text-white mb-4">#️⃣ Hashtag Suggestor</h2>
                 <p className="text-white/80 mb-6">Enter keywords and get trending hashtags for your post!</p>
                 
@@ -272,10 +280,15 @@ export default function SocialNetwork() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-12 text-white/60">
-          <p>Perfect for Instagram, Twitter, TikTok, and all your social platforms! 🚀</p>
+        <div className="text-center mt-16">
+          <p className="text-blue-100/60 text-sm">
+            Perfect for Instagram, Twitter, TikTok, and all your social platforms! 🚀
+          </p>
+          <div className="mt-4 text-xs text-gray-500">
+            <p> 2023 SocialFlow AI. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </div>
   )
-} 
+}
